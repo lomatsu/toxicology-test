@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  toxicology-db:
+    restart: always
+    container_name: toxicology-db
+    image: "postgres:13.3"
+    ports:
+      - "5432:5432"
+    volumes: 
+      - ~/docker/volume/toxicology-db:/var/lib/postgresql/data
+    environment: 
+      - POSTGRES_DATABASE=${POSTGRES_DB}
+      - POSTGRES_SERVER=${DB_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - toxicology-connect  
+
+
+volumes:
+  toxicology-db-volume:
+
+networks:
+  toxicology-connect:
+    driver: bridge

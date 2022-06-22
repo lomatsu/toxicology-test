@@ -1,17 +1,17 @@
-// Update with your config settings.
+import { DB_HOST, DB_PORT, POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER } from '.'
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
- module.exports = {
+module.exports = {
+
   development: {
-    client: "pg",
+    client: 'pg',
     connection: {
-      database: process.env.DB_NAME,
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
+      host: DB_HOST,
+      database: POSTGRES_DB,
+      user: POSTGRES_USER,
+      password: POSTGRES_PASSWORD,
+      ssl: {
+        rejectUnauthorized: false,
+      }
     },
     migrations: {
       directory: "../database/migrations",
@@ -22,38 +22,35 @@
   },
 
   staging: {
-    client: "postgresql",
+    client: 'pg',
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
+      database: 'my_db',
+      user: 'username',
+      password: 'password'
     },
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     migrations: {
-      directory: "../database/migrations",
-    },
-    seeds: {},
+      tableName: 'knex_migrations'
+    }
   },
 
   production: {
-    client: "postgresql",
+    client: 'pg',
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
+      database: 'my_db',
+      user: 'username',
+      password: 'password'
     },
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     migrations: {
-      directory: "../database/migrations",
-    },
-    seeds: {
-      directory: "./src/database/seeds",
-    },
-  },
+      tableName: 'knex_migrations'
+    }
+  }
+
 };
