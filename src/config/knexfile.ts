@@ -1,21 +1,31 @@
-import {DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER} from '.'
-
-const connection = {
-  DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
-}
+import { DB_HOST, DB_PORT, POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER } from '.'
 
 module.exports = {
 
   development: {
     client: 'pg',
-    connection
+    connection: {
+      host: DB_HOST, 
+      database: POSTGRES_DB,
+      user: POSTGRES_USER, 
+      password: POSTGRES_PASSWORD,
+      ssl: {
+        rejectUnauthorized: false,
+    }
+    },
+    migrations: {
+      directory: "../database/migrations",
+    },
+    seeds: {
+      directory: "../database/seeds",
+    },
   },
 
   staging: {
     client: 'pg',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -31,7 +41,7 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
