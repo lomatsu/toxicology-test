@@ -1,17 +1,16 @@
+require("dotenv").config();
+
 import express from "express";
 
-import { Router, Request, Response } from "express"
+import routes from "./routes";
+
 
 const app = express()
 
-const route = Router()
-
 app.use(express.json())
 
-route.get('/', (req: Request, res: Response) => {
-  res.json({ message: "Hello World with Typescript" })
-})
-
-app.use(route)
+app.use(routes)
 
 app.listen(3000, () => 'server running on port 3000')
+
+export default app
