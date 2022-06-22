@@ -4,7 +4,6 @@
   "description": "The application consists of a service that receives data from a toxicological sample to verify if a report is positive or negative and saves it in the database.",
   "main": "app.js",
   "scripts": {
-<<<<<<< HEAD
     "start": "nodemon src/app.js",
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,16 +11,6 @@
     "knex:make:migrate": "npm run knex -- migrate:make",
     "knex:migrate": "npm run knex -- migrate:latest",
     "knex:make:seed": "npm run knex -- seed:make",
-=======
-    "start": "NODE_ENV=production ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/app.ts",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/app.ts",
-    "build": "npx tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "knex": "./node_modules/.bin/knex --knexfile ./src/config/knexfile.ts",
-    "knex:make:migrate": "npm run knex --migrate:make",
-    "knex:migrate": "npm run knex migrate:latest",
-    "knex:make:seed": "npm run knex --seed:make",
->>>>>>> main
     "knex:seed": "npm run knex -- seed:run",
     "knex:migrate:rollback": "npm run knex migrate:rollback"
   },
@@ -39,10 +28,6 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "knex": "^2.1.0",
-<<<<<<< HEAD
-=======
-    "knex-tiny-logger": "^2.1.0",
->>>>>>> main
     "pg": "^8.7.3"
   },
   "devDependencies": {
