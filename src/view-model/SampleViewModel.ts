@@ -4,10 +4,10 @@ export class SampleViewModel {
   id: number
   createdAt?: string | Date
 	codigo_amostra: string
-	Cocaína: string
-	Anfetamina: string
-	Metanfetamina: string
-	MDA: string
+	Cocaína: number
+	Anfetamina: number
+	Metanfetamina: number
+	MDA: number
 	MDMA: number
 	THC: number
   Morfina: number

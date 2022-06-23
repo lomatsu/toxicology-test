@@ -2,12 +2,10 @@ import { Knex } from "knex"
 import { SampleModel } from '../database/model/SampleModel'
 import { IRepository } from "./Repository"
 
-export interface ISampleRepository extends IRepository<SampleModel> {
-	getById(sampleCode: string): Promise<SampleModel>
-}
+export interface ISampleRepository extends IRepository<SampleModel> {}
 
 export class SampleRepository implements ISampleRepository {
-  constructor(private db: Knex) {}
+  constructor(private db: Knex) { }
   async create(data: SampleModel): Promise<SampleModel> {
     const isSampleCodeAlreadyExists = await this.db
       .select("*")
@@ -21,12 +19,4 @@ export class SampleRepository implements ISampleRepository {
   getAll(): Promise<SampleModel[]> {
     return this.db.select("*").from("samples")
   }
-
-  async getById(sampleCode: string): Promise<SampleModel> {
-		const d = await this.db
-      .select("*")
-      .from("samples")
-      .where({ sample_code : sampleCode})
-    return d[0]
-	}
 }

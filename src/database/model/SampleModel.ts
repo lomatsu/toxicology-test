@@ -3,10 +3,10 @@ import { ModelBase } from "./Base"
 
 export class SampleModel extends ModelBase {
 	sample_code: string
-	cocaina: string
-	anfetamina: string
-	metanfetamina: string
-	mda: string
+	cocaina: number
+	anfetamina: number
+	metanfetamina: number
+	mda: number
 	mdma: number
 	thc: number
   morfina: number

@@ -1,15 +1,18 @@
 import { DB_HOST, POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER } from '.'
 
+const connection = {
+  host: "localhost",
+  database: "toxicology",
+  user: 'postgres',
+  password: '1234@mudar',
+}
+
 module.exports = {
+
 
   development: {
     client: 'pg',
-    connection: {
-      host: "localhost",
-      database: "toxicology",
-      user: 'postgres',
-      password: '1234@mudar',
-    },
+    connection,
     migrations: {
       directory: "../database/migrations",
     },
@@ -28,6 +31,21 @@ module.exports = {
       ssl: {
         rejectUnauthorized: false,
       }
+    },
+    migrations: {
+      directory: "../database/migrations",
+    },
+    seeds: {
+      directory: "../database/seeds",
+    },
+  },
+
+  test: {
+    client: "pg",
+    connection,
+    pool: {
+      min: 2,
+      max: 10,
     },
     migrations: {
       directory: "../database/migrations",
