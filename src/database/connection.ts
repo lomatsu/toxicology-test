@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: "../../.env" })
+
 import KnexInstance, { Knex as KnexType } from "knex"
 import KnexTinyLogger from "knex-tiny-logger"
 import Debug from "../common/debug"
