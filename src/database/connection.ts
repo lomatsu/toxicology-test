@@ -4,10 +4,10 @@ import Debug from "../common/debug"
 const logger = Debug("database")
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const config = require("../config")[process.env.NODE_ENV || "development"]
+const config = require("../config")[process.env.NODE_ENV || "production"]
 
 const knex: KnexType<any, unknown[]> =
-	process.env.NODE_ENV === "production"
+	process.env.NODE_ENV !== "production"
 		? KnexTinyLogger(KnexInstance(config), { logger })
 		: KnexInstance(config)
 
