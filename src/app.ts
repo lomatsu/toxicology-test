@@ -1,17 +1,25 @@
-import 'dotenv/config'
-
-import express from "express";
-
-import routes from "./routes"
+import express, { Request } from "express"
+import logger from "morgan"
+import cors from "cors"
 
 const app = express()
 
+const corsAllowed = (process.env.CORS_ALLOWED || "").split(",")
+
+const corsOptionsDelegate = function (
+	req: Request,
+	callback: (error: Error | null, options: any) => void
+) {
+	if (process.env.NODE_ENV !== "production") {
+		return callback(null, { origin: true })
+	}
+	let corsOptions = { origin: false }
+	callback(null, corsOptions)
+}
+
+app.use(cors(corsOptionsDelegate))
+app.use(logger("dev"))
 app.use(express.json())
-
-app.use(routes)
-
-app.listen(3000, () => {
-  console.log('server running on port 3000')
-})
+app.use(express.urlencoded({ extended: false }))
 
 export default app

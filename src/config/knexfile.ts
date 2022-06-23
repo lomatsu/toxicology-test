@@ -1,13 +1,12 @@
 import { DB_HOST, POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER } from '.'
 
-console.log("dfajsdfajshdjkf", process.env.DB_HOST)
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
       host: "localhost",
-      database: "toxicology-db",
+      database: "toxicology",
       user: 'postgres',
       password: '1234@mudar',
     },
