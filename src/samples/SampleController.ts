@@ -64,7 +64,7 @@ export class SampleController extends ControllerBase<ISampleRepository> {
     Number(sample.heroina) >= cutNotes.heroina ?
       isPositiveOrNegative.push('Positivo') :
       isPositiveOrNegative.push('Negative')
-      
+
     return isPositiveOrNegative.some(elem => elem === "Positivo") ? "Positivo" : "Negativo"
   }
 
@@ -74,22 +74,15 @@ export class SampleController extends ControllerBase<ISampleRepository> {
       if (!body) {
         res.status(400).json({ message: "Body is required for this request" })
       }
-      console.log("body", body)
       const sampleModel = new SampleModel(body)
-      console.log("sampleModel", sampleModel)
       const result = await this.verifyResult(sampleModel)
-      console.log("result", result)
       sampleModel.result = result as string
       const newSample = await this.repository.create(sampleModel)
-      console.log("newSample", newSample)
       const newSampleViewModel = new SampleViewModel(newSample)
-      console.log("newSampleViewModel", newSampleViewModel)
       const response = {
         Codigo_amostra: newSampleViewModel.codigo_amostra,
         Resultado: newSampleViewModel.result
       }
-      console.log("response", response)
-      console.log("ENV", process.env.DB_HOST)
 
       res.json(response)
 

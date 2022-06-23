@@ -7,7 +7,7 @@ const logger = Debug("database")
 const config = require("../config")[process.env.NODE_ENV || "development"]
 
 const knex: KnexType<any, unknown[]> =
-	process.env.NODE_ENV !== "production"
+	process.env.NODE_ENV === "production"
 		? KnexTinyLogger(KnexInstance(config), { logger })
 		: KnexInstance(config)
 
