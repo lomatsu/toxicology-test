@@ -6,9 +6,6 @@ import cors from "cors"
 
 const app = express()
 
-console.log("hereee", process.env.DB_HOST);
-
-
 const corsOptionsDelegate = function (
 	req: Request,
 	callback: (error: Error | null, options: any) => void
