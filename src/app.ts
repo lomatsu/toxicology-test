@@ -1,10 +1,13 @@
+import 'dotenv/config'
+
 import express, { Request } from "express"
 import logger from "morgan"
 import cors from "cors"
 
 const app = express()
 
-const corsAllowed = (process.env.CORS_ALLOWED || "").split(",")
+console.log("hereee", process.env.DB_HOST);
+
 
 const corsOptionsDelegate = function (
 	req: Request,

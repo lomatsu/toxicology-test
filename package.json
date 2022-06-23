@@ -4,7 +4,7 @@
   "description": "The application consists of a service that receives data from a toxicological sample to verify if a report is positive or negative and saves it in the database.",
   "main": "app.js",
   "scripts": {
-    "start": "node ./dist/bin/www",
+    "start": "NODE_ENV=production node ./dist/bin/www",
     "start:dev": "node ./dist/bin/www",
     "build": "rm -rf ./dist && ./node_modules/.bin/tsc -p tsconfig.json",
     "test": "NODE_ENV=test ./node_modules/.bin/jest --testMatch **/*.test.ts --detectOpenHandles  --passWithNoTests",
@@ -15,10 +15,10 @@
     "knex:make:seed": "npm run knex -- seed:make",
     "knex:seed": "npm run knex -- seed:run",
     "knex:migrate:rollback": "npm run knex migrate:rollback",
-    "knex:make:migrate:production": "NODE_ENV=production npm run knex -- migrate:make",
-    "knex:make:seed:production": "NODE_ENV=production npm run knex -- seed:make",
-    "knex:migrate:production": "NODE_ENV=production npm run knex -- migrate:latest",
-    "knex:migrate:rollback:production": "NODE_ENV=production npm run knex migrate:rollback"
+    "knex:make:migrate:prod": "NODE_ENV=production npm run knex -- migrate:make",
+    "knex:make:seed:prod": "NODE_ENV=production npm run knex -- seed:make",
+    "knex:migrate:prod": "NODE_ENV=production npm run knex -- migrate:latest",
+    "knex:migrate:rollback:prod": "NODE_ENV=production npm run knex migrate:rollback"
   },
   "repository": {
     "type": "git",

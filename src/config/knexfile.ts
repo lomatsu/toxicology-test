@@ -1,15 +1,18 @@
+
+import dotenv from 'dotenv'
+dotenv.config({ path: "../../.env" })
+
 import { DB_HOST, POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER } from '.'
+
 
 const connection = {
   host: "localhost",
   database: "toxicology",
-  user: 'postgres',
-  password: '1234@mudar',
+  user: "postgres",
+  password: "1234@mudar",
 }
 
 module.exports = {
-
-
   development: {
     client: 'pg',
     connection,
