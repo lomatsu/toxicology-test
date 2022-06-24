@@ -1,9 +1,7 @@
-import dotenv from 'dotenv'
-dotenv.config({ path: "../../.env" })
-
 import express, { Request } from "express"
 import logger from "morgan"
 import cors from "cors"
+import authMiddleware from "./common/middlewares/auth"
 
 const app = express()
 
@@ -22,5 +20,6 @@ app.use(cors(corsOptionsDelegate))
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(authMiddleware)
 
 export default app
