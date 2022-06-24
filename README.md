@@ -53,7 +53,7 @@ npm run start:dev
 
 # unit tests
 
-npm run tesgit
+npm run test
 # run production
 
 npm run start
