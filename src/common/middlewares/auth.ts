@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken"
 const secret: string = process.env.SECRET as string;
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export default (req: Request | any, res: Response, next: NextFunction) => {
   const unauthorized = () => {
     res.status(401).json({
       message: "Unauthorized user",
@@ -24,12 +24,12 @@ export default (req: Request, res: Response, next: NextFunction) => {
       return unauthorized()
     }
 
-    jwt.verify(token, secret, (err) => {
+    jwt.verify(token, secret, (err: any, user: any) => {
       if (err) {
         console.log(err)
         return res.sendStatus(403);
       }
-
+      req.user = user
       next();
     });
   } catch (error) {
