@@ -13,6 +13,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   }
   try {
     const authorization = req.headers.authorization || "";
+    console.log("authorization", typeof  authorization, authorization)    
 
     if (!authorization || !authorization.startsWith("Bearer")) {
       return unauthorized()
@@ -23,7 +24,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
       return unauthorized()
     }
     console.log("token", typeof token, token)
-    console.log("secret", typeof secret, secret)
+    console.log("secret", typeof  secret, secret)
 
     jwt.verify(token, secret, (err) => {
       if (err) {
