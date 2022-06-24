@@ -1,24 +1,4 @@
-# toxicology-test
-The application consists of a service that receives data from a toxicological sample to verify if a report is positive or negative and saves it in the database.
-
-Para rodar local você precisará seguir os seguintes passos:
-
-  - Criar imagem: docker pull postgres
-  - Listar imagens: docker images
-
-  - Rodar container e exportar a porta: docker run --name toxicology -e POSTGRES_PASSWORD=1234@mudar -d -p 5432:5432 postgres
-
-  - Entrar no bash: docker exec -it ''id do container'' bash
-
-  - Entrar no postgres: psql -U postgres
-
-  - Criar base de dados: CREATE DATABASE toxicology;
-
-  Após isso, deverá rodar o comando "npm run knex:migrate" para criação de todas as tabelas necessárias.
-
-
-
-  # DescoClass (Back end)
+# Toxicology (Back end)
 
 O Toxicology é uma api para verificar se amostras possuem resultado positivo ou negativo para drogas ilicitas.
 
@@ -63,18 +43,17 @@ tsconfig.json
 
 ```bash
 
+# build
+
+npm run build
+
 # run develop
 
 npm run start:dev
 
 # unit tests
 
-npm run test
-
-# build
-
-npm run build
-
+npm run tesgit
 # run production
 
 npm run start
@@ -92,19 +71,10 @@ npm run knex:migrate:prod
 
 **Docker**
 
-Rodando projeto localmente com docker
+Rodando o banco localmente com docker
 
 ```bash
 
-# running through facilitator
-
-sh ./clean-dev-environment.sh && run-dev-environment.sh
-
-# running e2e tests with docker
-
-docker-compose -f docker-compose.e2e.yml build
-docker-compose -f docker-compose.e2e.yml up -d database-test
-docker-compose -f docker-compose.e2e.yml run descoclass-api-test npm run test:e2e:docker
-
+docker-compose up -d
 
 ```
