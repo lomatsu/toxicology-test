@@ -22,8 +22,8 @@ export default (req: Request, res: Response, next: NextFunction) => {
     if (!token) {
       return unauthorized()
     }
-    console.log("token", token)
-    console.log("secret", secret)
+    console.log("token", typeof token, token)
+    console.log("secret", typeof secret, secret)
 
     jwt.verify(token, secret, (err) => {
       if (err) {
