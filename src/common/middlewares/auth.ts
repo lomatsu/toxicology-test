@@ -3,7 +3,7 @@ const secret = process.env.SECRET || ""
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken'
 
-export default (req: any, res: Response, next: NextFunction): void => {
+export default (req: Request | any, res: Response, next: NextFunction): void => {
   const unauthorized = () => {
     res.status(401).json({
       message: "Unauthorized user",
@@ -25,7 +25,7 @@ export default (req: any, res: Response, next: NextFunction): void => {
         return res.sendStatus(403);
       }
 
-      req = user;
+      req.user = user;
       next();
     });
   } catch (error) {

@@ -4,7 +4,6 @@ import { ISampleRepository } from "../repositories/SampleRepository"
 import { SampleViewModel } from "../view-model/SampleViewModel"
 import { SampleModel } from "../database/model/SampleModel"
 import { cutNotes } from '../lib/constants/cut-notes'
-const db = require("../database/connection")
 
 export class SampleController extends ControllerBase<ISampleRepository> {
   public static readonly baseRouter: string = "/api/samples"
