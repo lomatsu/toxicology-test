@@ -25,7 +25,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
     console.log("token", token)
     console.log("secret", secret)
 
-    jwt.verify(token, secret, (err: any) => {
+    jwt.verify(token, secret, (err) => {
       if (err) {
         return res.sendStatus(403);
       }
