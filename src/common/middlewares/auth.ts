@@ -12,7 +12,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
     })
   }
   try {
-    const authorization = req.headers.authorization || "";
+    const authorization = req.headers.authorization;
     console.log("authorization", typeof  authorization, authorization)    
 
     if (!authorization || !authorization.startsWith("Bearer")) {
