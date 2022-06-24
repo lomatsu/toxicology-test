@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 import express, { Request } from "express"
 import logger from "morgan"
 import cors from "cors"

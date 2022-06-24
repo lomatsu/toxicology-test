@@ -15,3 +15,96 @@ Para rodar local você precisará seguir os seguintes passos:
   - Criar base de dados: CREATE DATABASE toxicology;
 
   Após isso, deverá rodar o comando "npm run knex:migrate" para criação de todas as tabelas necessárias.
+
+
+
+  # DescoClass (Back end)
+
+O Toxicology é uma api para verificar se amostras possuem resultado positivo ou negativo para drogas ilicitas.
+
+Ambientes:
+
+- Production - [https://toxicology-test.herokuapp.com/api/](https://toxicology-test.herokuapp.com/api/)
+- Local - [http://localhost:3000/api/](http://localhost:3000/api/)
+
+
+## Contents
+
+- [Structure](#structure)
+- [Usage](#usage)
+
+## Structure
+
+Projeto escrito utilizando [NodeJS](https://nodejs.org/en/), [Express](https://expressjs.com/) and [Typescript](https://www.typescriptlang.org/).
+
+```
+src
+  |_ bin
+  |_ common
+  |_ config
+  |_ database
+  |     |_ migrations
+  |     |_ model
+  |     |_ seeds
+  |_ repositories
+  |_ routes
+  |_ sample
+  |_ view-model
+  app.ts
+.gitignore
+jest.config
+package-lock.json
+package.json
+README.md
+tsconfig.json
+```
+
+## Usage
+
+```bash
+
+# run develop
+
+npm run start:dev
+
+# unit tests
+
+npm run test
+
+# build
+
+npm run build
+
+# run production
+
+npm run start
+
+# run develop migrations
+
+npm run knex:migrate
+
+# run production migrations
+
+npm run knex:migrate:prod
+
+
+```
+
+**Docker**
+
+Rodando projeto localmente com docker
+
+```bash
+
+# running through facilitator
+
+sh ./clean-dev-environment.sh && run-dev-environment.sh
+
+# running e2e tests with docker
+
+docker-compose -f docker-compose.e2e.yml build
+docker-compose -f docker-compose.e2e.yml up -d database-test
+docker-compose -f docker-compose.e2e.yml run descoclass-api-test npm run test:e2e:docker
+
+
+```

@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config({ path: "../../../.env" })
-
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken"
 const secret: string = process.env.SECRET as string;
@@ -22,6 +19,8 @@ export default (req: Request | any, res: Response, next: NextFunction) => {
     if (!token) {
       return unauthorized()
     }
+
+    console.log(`auth: ${authorization} - secret: ${secret} - token: ${token}`);
 
     if (token === secret) {
       next()

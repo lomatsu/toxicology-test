@@ -1,26 +1,26 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  toxicology-db:
-    restart: always
-    container_name: toxicology-db
-    image: "postgres:13.3"
+  # app:
+  #   build: .
+  #   container_name: "api-server"
+  #   command: sh -c "npm run knex:migrate && npm run build && npm run start:dev"
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - .:/usr/app
+  #   links:
+  #     - db
+  #   depends_on:
+  #     - db
+  #   environment: 
+  #     DB_HOST: host.doker.internal
+  #     DB_USER: postgres
+  #     DB_PASS: 1234@mudar
+  db:
+    image: postgres:alpine
+    container_name: api-db
     ports:
       - "5432:5432"
-    volumes: 
-      - ~/docker/volume/toxicology-db:/var/lib/postgresql/data
-    environment: 
-      - POSTGRES_DATABASE=${POSTGRES_DB}
-      - POSTGRES_SERVER=${DB_HOST}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    networks:
-      - toxicology-connect  
-
-
-volumes:
-  toxicology-db-volume:
-
-networks:
-  toxicology-connect:
-    driver: bridge
+    environment:
+      - POSTGRES_PASSWORD=1234@mudar

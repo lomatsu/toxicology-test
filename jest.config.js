@@ -21,9 +21,9 @@ module.exports = {
 	coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
 	coverageThreshold: {
 		global: {
-			lines: 50,
-			branches: 50,
-			functions: 50,
+			lines: 40,
+			branches: 40,
+			functions: 40,
 		},
 	},
 
