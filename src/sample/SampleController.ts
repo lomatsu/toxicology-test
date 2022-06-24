@@ -1,7 +1,8 @@
 import { Application, Request, Response } from "express"
 import { ControllerBase } from "../common/ControllerBase"
 import { ISampleRepository } from "../repositories/SampleRepository"
-import SampleModel, { SampleViewModel } from "../view-model/SampleViewModel"
+import { SampleViewModel } from "../view-model/SampleViewModel"
+import { SampleModel } from "../database/model/SampleModel"
 import { cutNotes } from '../lib/constants/cut-notes'
 const db = require("../database/connection")
 

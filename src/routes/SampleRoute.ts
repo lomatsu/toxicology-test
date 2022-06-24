@@ -1,5 +1,5 @@
 import { Application } from "express"
-import { SampleController } from "../samples/SampleController"
+import { SampleController } from "../sample/SampleController"
 import { ISampleRepository } from "../repositories/SampleRepository"
 export const registerSampleRoute = (
   app: Application,

@@ -35,5 +35,3 @@ export class SampleModel extends ModelBase {
     this.result = params.result
 	}
 }
-
-export default SampleModel
