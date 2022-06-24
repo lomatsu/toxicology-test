@@ -27,6 +27,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
 
     jwt.verify(token, secret, (err) => {
       if (err) {
+        console.log(err)
         return res.sendStatus(403);
       }
 
