@@ -10,14 +10,28 @@ import http from "http"
 import { Request, Response } from "express"
 import { SampleRepository } from "../repositories/SampleRepository"
 import { AddressInfo } from "net"
-import {
-  registerSampleRoute,
-} from "../routes/SampleRoute"
+import { registerSampleRoute } from "../routes/SampleRoute"
 
 app.use("/api/health-check", (_: Request, res: Response) => {
   res.json({ message: "System OK", env: process.env.NODE_ENV })
 })
 
+app.use("/api/health-check-database", (_: Request, res: Response) => {
+  knex
+    .select("*")
+    .from("samples")
+    .first()
+    .then(() => {
+      res.json({ message: "Database OK" })
+    })
+    .catch((err) => {
+      if (err.message === 'database does not exist') {
+        res.json({ msg: "Database OK" })
+      } else {
+        res.json({ error: "Error Database" })
+      }
+    })
+})
 // register routes
 registerSampleRoute(
   app,

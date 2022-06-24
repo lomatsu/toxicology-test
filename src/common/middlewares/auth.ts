@@ -1,36 +1,33 @@
-const secret = process.env.SECRET || ""
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken"
+const secret = process.env.SECRET || "";
 
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken'
-
-export default (req: Request | any, res: Response, next: NextFunction): void => {
+export default (req: Request, res: Response, next: NextFunction) => {  
   const unauthorized = () => {
     res.status(401).json({
       message: "Unauthorized user",
     })
   }
-
   try {
     const authorization = req.headers.authorization || "";
+
     if (!authorization || !authorization.startsWith("Bearer")) {
       return unauthorized()
     }
     const token = authorization.split(" ")[1];
 
     if (!token) {
-      res.status(401).json({ message: "Access denied" });
+      return unauthorized()
     }
-    jwt.verify(token, secret, (err: any, user: any) => {
+
+    jwt.verify(token, secret, (err) => {
       if (err) {
         return res.sendStatus(403);
       }
 
-      req.user = user;
       next();
     });
   } catch (error) {
     res.status(400).json({ message: "Invalid token" });
   }
-}
-
-
+} 

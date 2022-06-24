@@ -1,9 +1,9 @@
-import 'dotenv/config'
+import dotenv from 'dotenv'
+dotenv.config({ path: "../../.env" })
 
 import express, { Request } from "express"
 import logger from "morgan"
 import cors from "cors"
-import authMiddleware from '../src/common/middlewares/auth'
 
 const app = express()
 
