@@ -12,7 +12,7 @@ export default (req: Request | any, res: Response, next: NextFunction) => {
     })
   }
   try {
-    const authorization = req.headers.authMiddleware;
+    const authorization = req.headers.authorization;
 
     if (!authorization || !authorization.startsWith("Bearer")) {
       return unauthorized()
