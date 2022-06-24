@@ -12,8 +12,7 @@ export default (req: Request | any, res: Response, next: NextFunction) => {
     })
   }
   try {
-    const authorization = req.headers["authorization"];
-    console.log("authorization", typeof authorization, authorization)
+    const authorization = req.headers.authMiddleware;
 
     if (!authorization || !authorization.startsWith("Bearer")) {
       return unauthorized()
@@ -29,14 +28,6 @@ export default (req: Request | any, res: Response, next: NextFunction) => {
     } else {
       return res.sendStatus(403);
     }
-    // jwt.verify(token, secret, (err: any, user: any) => {
-    //   if (err) {
-    //     console.log(err)
-    //     return res.sendStatus(403);
-    //   }
-    //   req.user = user
-    //   next();
-    // });
   } catch (error) {
     res.status(400).json({ message: "Invalid token" });
   }
