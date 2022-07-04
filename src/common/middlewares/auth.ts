@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 const secret: string = process.env.SECRET as string;
 
 export default (req: Request | any, res: Response, next: NextFunction) => {
+  next()
+
   const unauthorized = () => {
     res.status(401).json({
       message: "Unauthorized user",
