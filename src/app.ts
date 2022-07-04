@@ -4,21 +4,25 @@ dotenv.config()
 import express, { Request } from "express"
 import logger from "morgan"
 import cors from "cors"
-import authMiddleware from "./common/middlewares/auth"
+// import authMiddleware from "./common/middlewares/auth"
 
 const app = express()
 
-app.use(
-	cors({
-		origin: ["https://toxicology-test.herokuapp.com"],
-		methods: ["GET", "POST", "DELETE"],
-		credentials: true,
-	})
-);
+const corsOptionsDelegate = function (
+	req: Request,
+	callback: (error: Error | null, options: any) => void
+) {
+	if (process.env.NODE_ENV !== "production") {
+		return callback(null, { origin: true })
+	}
+	let corsOptions = { origin: true }
+	callback(null, corsOptions)
+}
 
+app.use(cors(corsOptionsDelegate))
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(authMiddleware)
+// app.use(authMiddleware)
 
 export default app
